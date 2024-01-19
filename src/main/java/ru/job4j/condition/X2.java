@@ -10,7 +10,7 @@ public class X2 {
         int b = 0;
         int c = 0;
         int x = 2;
-        int rs1 = X2.calc(a, b, c, x);
-        System.out.println(rs1);
+        int result = X2.calc(a, b, c, x);
+        System.out.println(result);
     }
 }
