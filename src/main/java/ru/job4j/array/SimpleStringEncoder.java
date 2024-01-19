@@ -5,24 +5,17 @@ public class SimpleStringEncoder {
         String result = "";
         char symbol = input.charAt(0);
         int counter = 1;
-        if (input.length() == 1) {
-            result = result + symbol;
-        }
         for (int i = 1; i < input.length(); i++) {
             if (symbol == input.charAt(i)) {
                 counter++;
-                result = i == input.length() - 1 ? result + symbol + counter
-                        : result;
-            } else if (i == input.length() - 1) {
-                result = counter == 1 ? result + symbol + input.charAt(i)
-                        : result + symbol + counter + input.charAt(i);
             } else {
-                result = counter == 1 ? result + symbol
-                        : result + symbol + counter;
+                result = counter == 1 ? result + symbol : result + symbol + counter;
                 symbol = input.charAt(i);
                 counter = 1;
             }
         }
+        result = counter == 1 ? result + input.charAt(input.length() - 1)
+                : result + symbol + counter;
         return result;
     }
 }
