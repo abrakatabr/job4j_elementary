@@ -6,18 +6,38 @@ import static org.assertj.core.api.Assertions.*;
 class FitTest {
 
     @Test
-    void whenMan180Then92() {
-        short in = 180;
-        double expected = 92;
-        double out = Fit.manWeight(in);
-        assertThat(out).isEqualTo(expected, withPrecision(0.01));
+    void whenWomanHeight187ThenWeight88and55() {
+        short height = 187;
+        double expected = 88.55;
+        double out = Fit.womanWeight(height);
+        assertThat(out).isCloseTo(expected, within(0.01));
     }
 
     @Test
-    void whenWoman170Then69() {
-        short in = 170;
-        double expected = 69;
-        double out = Fit.womanWeight(in);
-        assertThat(out).isEqualTo(expected, withPrecision(0.01));
+    void whenManHeight160ThenWeight69() {
+        short height = 160;
+        double expected = 69.0;
+        double out = Fit.manWeight(height);
+        assertThat(out).isCloseTo(expected, within(0.01));
+    }
+
+    @Test
+    void whenWomanHeight160ThenWeight57and5() {
+        short height = 160;
+        double expected = 57.5;
+        double out = Fit.womanWeight(height);
+        assertThat(out).isCloseTo(expected, within(0.01));
+    }
+
+    @Test
+    void whenHeightZeroThenIllegalArgumentException() {
+        short height = 0;
+        assertThatThrownBy(() -> Fit.manWeight(height))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Height must be greater than zero");
+
+        assertThatThrownBy(() -> Fit.womanWeight(height))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Height must be greater than zero");
     }
 }
